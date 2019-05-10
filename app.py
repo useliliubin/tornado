@@ -12,6 +12,7 @@ class Application(tornado.web.Application):
             (r'/', IndexHandler),
             (r'/explore', ExploreHandler),
             (r'/post/(?P<id>\d+)', PostHandler),#正则的分组捕获
+            (r'/test', test)
         ]
         settings = dict(
             debug=True,
@@ -20,6 +21,10 @@ class Application(tornado.web.Application):
 
         )
         super().__init__(handlers, **settings)
+
+class test(tornado.web.RequestHandler):
+    def get(self):
+        self.render('test.html')
 
 
 application = Application()
